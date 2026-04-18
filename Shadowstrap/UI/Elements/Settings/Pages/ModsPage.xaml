@@ -104,7 +104,7 @@
                            FontSize="12" Foreground="{DynamicResource ShadowTextMutedBrush}"
                            Margin="0,0,0,6" />
                 <StackPanel Orientation="Horizontal">
-                    <ui:Button Icon="MusicNote1Add24" Content="Choose Sound"
+                    <ui:Button Icon="MusicNote124" Content="Choose Sound"
                                Command="{Binding ManageCustomDeathSoundCommand}">
                         <ui:Button.Style>
                             <Style TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
