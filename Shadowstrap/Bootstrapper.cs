@@ -20,6 +20,8 @@ using System.Windows.Shell;
 using Microsoft.Win32;
 
 using Shadowstrap.AppData;
+using Shadowstrap.Enums;
+using Shadowstrap.Helpers;
 using Shadowstrap.RobloxInterfaces;
 using Shadowstrap.UI.Elements.Bootstrapper.Base;
 
@@ -600,6 +602,12 @@ namespace Shadowstrap
                 logCreatedEvent.Set();
             };
 
+            if (App.Settings.Prop.RamCleanerEnabled)
+                RamCleaner.Clean();
+
+            if (App.Settings.Prop.MultiInstanceEnabled)
+                MultiInstanceHelper.CloseRobloxMutexes();
+
             if (App.Settings.Prop.UseHoneGG)
                 LaunchHoneGG(LOG_IDENT);
 
@@ -622,6 +630,13 @@ namespace Shadowstrap
             }
 
             App.Logger.WriteLine(LOG_IDENT, $"Started Roblox (PID {_appPid}), waiting for log file");
+
+            if (App.Settings.Prop.RobloxProcessPriority != RobloxProcessPriority.Default)
+            {
+                var priorityPid = _appPid;
+                var priority = App.Settings.Prop.RobloxProcessPriority;
+                new Thread(() => ApplyProcessPriority(priorityPid, priority)) { IsBackground = true }.Start();
+            }
 
             logCreatedEvent.WaitOne(TimeSpan.FromSeconds(15));
 
@@ -761,6 +776,31 @@ namespace Shadowstrap
 #endregion
 
         #region App Install
+        private static void ApplyProcessPriority(int pid, RobloxProcessPriority priority)
+        {
+            const string LOG_IDENT = "Bootstrapper::ApplyProcessPriority";
+
+            // Give Roblox a few seconds to fully initialize before boosting
+            Thread.Sleep(3000);
+
+            try
+            {
+                using var process = Process.GetProcessById(pid);
+                process.PriorityClass = priority switch
+                {
+                    RobloxProcessPriority.AboveNormal => ProcessPriorityClass.AboveNormal,
+                    RobloxProcessPriority.High        => ProcessPriorityClass.High,
+                    RobloxProcessPriority.Realtime    => ProcessPriorityClass.RealTime,
+                    _                                 => ProcessPriorityClass.Normal
+                };
+                App.Logger.WriteLine(LOG_IDENT, $"Set Roblox (PID {pid}) priority to {priority}");
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteException(LOG_IDENT, ex);
+            }
+        }
+
         private void LaunchHoneGG(string parentLogIdent)
         {
             const string LOG_IDENT = "Bootstrapper::LaunchHoneGG";

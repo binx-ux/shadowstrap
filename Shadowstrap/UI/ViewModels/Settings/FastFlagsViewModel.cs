@@ -78,6 +78,12 @@ namespace Shadowstrap.UI.ViewModels.Settings
                 }
             }
         }
+        public bool FPSCounterEnabled
+        {
+            get => App.FastFlags.GetPreset("Rendering.FPSCounter") == "True";
+            set => App.FastFlags.SetPreset("Rendering.FPSCounter", value ? "True" : null);
+        }
+
         public bool ResetConfiguration
         {
             get => _preResetFlags is not null;

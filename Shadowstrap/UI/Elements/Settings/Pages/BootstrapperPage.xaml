@@ -17,19 +17,19 @@
     <StackPanel Margin="0,0,14,14">
         <TextBlock Margin="0,0,0,8" Text="{x:Static resources:Strings.Menu_Behaviour_Description}" FontSize="14" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
 
-        <controls:OptionControl 
+        <controls:OptionControl
             Header="{x:Static resources:Strings.Menu_Behaviour_ConfirmLaunches_Title}"
             Description="{x:Static resources:Strings.Menu_Behaviour_ConfirmLaunches_Description}">
             <ui:ToggleSwitch IsChecked="{Binding ConfirmLaunches, Mode=TwoWay}" />
         </controls:OptionControl>
 
-        <controls:OptionControl 
+        <controls:OptionControl
             Header="{x:Static resources:Strings.Menu_Behaviour_BackgroundUpdates_Title}"
             Description="{x:Static resources:Strings.Menu_Behaviour_BackgroundUpdates_Description}">
             <ui:ToggleSwitch IsChecked="{Binding BackgroundUpdates, Mode=TwoWay}" />
         </controls:OptionControl>
 
-        <controls:OptionControl 
+        <controls:OptionControl
             Header="{x:Static resources:Strings.Menu_Behaviour_ForceRobloxReinstall_Title}"
             Description="{x:Static resources:Strings.Menu_Behaviour_ForceRobloxReinstall_Description}">
             <controls:OptionControl.Style>
@@ -42,6 +42,45 @@
                 </Style>
             </controls:OptionControl.Style>
             <ui:ToggleSwitch IsChecked="{Binding ForceRobloxReinstallation, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <!-- Performance Features -->
+        <TextBlock FontSize="20" FontWeight="Medium" Margin="0,20,0,0" Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+            <Run Text="⚡ Performance Features" />
+        </TextBlock>
+        <Border Height="2" Margin="0,6,0,10" CornerRadius="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#8B5CF6" Offset="0" />
+                    <GradientStop Color="#6D28D9" Offset="0.6" />
+                    <GradientStop Color="Transparent" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <!-- Process Priority -->
+        <controls:OptionControl
+            Header="Process Priority Boost"
+            Description="Sets Roblox's CPU scheduling priority after launch. High gives a noticeable boost; Realtime can cause system stutters — use with caution.">
+            <ComboBox Width="220"
+                      ItemsSource="{Binding ProcessPriorities}"
+                      SelectedValue="{Binding SelectedProcessPriority, Mode=TwoWay}"
+                      SelectedValuePath="Key"
+                      DisplayMemberPath="Value" />
+        </controls:OptionControl>
+
+        <!-- Multi-Instance -->
+        <controls:OptionControl
+            Header="Multi-Instance"
+            Description="Allows multiple Roblox windows to run at the same time. Closes the singleton mutex in any running Roblox process before each new launch.">
+            <ui:ToggleSwitch IsChecked="{Binding MultiInstanceEnabled, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <!-- RAM Cleaner -->
+        <controls:OptionControl
+            Header="RAM Cleaner"
+            Description="Trims other processes' working sets before Roblox starts, freeing physical RAM so Roblox has more available on launch.">
+            <ui:ToggleSwitch IsChecked="{Binding RamCleanerEnabled, Mode=TwoWay}" />
         </controls:OptionControl>
     </StackPanel>
 </ui:UiPage>

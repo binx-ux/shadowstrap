@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Shadowstrap.Enums;
 
 namespace Shadowstrap.Models.Persistable
 {
@@ -37,5 +38,10 @@ namespace Shadowstrap.Models.Persistable
         // hone.gg integration
         public bool UseHoneGG { get; set; } = false;
         public string HoneGGPath { get; set; } = "";
+
+        // performance features
+        public RobloxProcessPriority RobloxProcessPriority { get; set; } = RobloxProcessPriority.Default;
+        public bool MultiInstanceEnabled { get; set; } = false;
+        public bool RamCleanerEnabled { get; set; } = false;
     }
 }

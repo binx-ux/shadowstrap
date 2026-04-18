@@ -21,6 +21,12 @@
             <ui:ToggleSwitch IsChecked="{Binding UseFastFlagManager, Mode=TwoWay}" />
         </controls:OptionControl>
 
+        <controls:OptionControl
+            Header="FPS Counter"
+            Description="Shows an in-game frames-per-second overlay via FFlagDebugDisplayFPS. Useful for monitoring performance after applying a preset.">
+            <ui:ToggleSwitch IsChecked="{Binding FPSCounterEnabled, Mode=TwoWay}" />
+        </controls:OptionControl>
+
         <!-- Performance Presets -->
         <TextBlock FontSize="20" FontWeight="Medium" Margin="0,20,0,0" Foreground="{DynamicResource TextFillColorPrimaryBrush}">
             <Run Text="⚡ Performance Presets" />
