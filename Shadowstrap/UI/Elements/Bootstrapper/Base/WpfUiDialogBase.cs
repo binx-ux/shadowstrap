@@ -1,18 +1,18 @@
-﻿using Bloxstrap.UI.Elements.Base;
-using Bloxstrap.UI.Utility;
-using Bloxstrap.UI.ViewModels.Bootstrapper;
+﻿using Shadowstrap.UI.Elements.Base;
+using Shadowstrap.UI.Utility;
+using Shadowstrap.UI.ViewModels.Bootstrapper;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Windows.Shell;
 
-namespace Bloxstrap.UI.Elements.Bootstrapper.Base
+namespace Shadowstrap.UI.Elements.Bootstrapper.Base
 {
     public class WpfUiDialogBase : WpfUiWindow, IBootstrapperDialog
     {
         // Should hopefully be set by the other ctor
         protected BootstrapperDialogViewModel _viewModel = null!;
 
-        public Bloxstrap.Bootstrapper? Bootstrapper { get; set; }
+        public Shadowstrap.Bootstrapper? Bootstrapper { get; set; }
 
         private bool _isClosing;
 
