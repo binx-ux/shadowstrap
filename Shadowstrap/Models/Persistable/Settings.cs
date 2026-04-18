@@ -43,5 +43,11 @@ namespace Shadowstrap.Models.Persistable
         public RobloxProcessPriority RobloxProcessPriority { get; set; } = RobloxProcessPriority.Default;
         public bool MultiInstanceEnabled { get; set; } = false;
         public bool RamCleanerEnabled { get; set; } = false;
+
+        // auto-rejoin
+        public bool AutoRejoinEnabled { get; set; } = false;
+
+        // custom death sound (path stored so we can show current selection; the file lives in Modifications/)
+        public string CustomDeathSoundPath { get; set; } = "";
     }
 }

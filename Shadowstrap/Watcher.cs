@@ -103,6 +103,8 @@ namespace Shadowstrap
 
         public async Task Run()
         {
+            const string LOG_IDENT = "Watcher::Run";
+
             if (!_lock.IsAcquired || _watcherData is null)
                 return;
 
@@ -111,6 +113,8 @@ namespace Shadowstrap
             while (Utilities.GetProcessesSafe().Any(x => x.Id == _watcherData.ProcessId))
                 await Task.Delay(1000);
 
+            App.Logger.WriteLine(LOG_IDENT, "Roblox process has exited");
+
             if (_watcherData.AutoclosePids is not null)
             {
                 foreach (int pid in _watcherData.AutoclosePids)
@@ -118,7 +122,22 @@ namespace Shadowstrap
             }
 
             if (App.LaunchSettings.TestModeFlag.Active)
+            {
                 Process.Start(Paths.Process, "-settings -testmode");
+                return;
+            }
+
+            if (App.Settings.Prop.AutoRejoinEnabled && !String.IsNullOrEmpty(_watcherData.LaunchUrl))
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Auto-rejoin enabled — waiting 5 s before relaunching");
+                await Task.Delay(5000);
+                App.Logger.WriteLine(LOG_IDENT, $"Relaunching with URL: {_watcherData.LaunchUrl}");
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = _watcherData.LaunchUrl,
+                    UseShellExecute = true
+                });
+            }
         }
 
         public void Dispose()

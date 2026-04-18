@@ -44,6 +44,13 @@
             <ui:ToggleSwitch IsChecked="{Binding ForceRobloxReinstallation, Mode=TwoWay}" />
         </controls:OptionControl>
 
+        <!-- Auto-Rejoin -->
+        <controls:OptionControl
+            Header="Auto-Rejoin"
+            Description="Automatically relaunches Roblox 5 seconds after it exits. Requires Activity Tracking to be enabled. Will rejoin the same server if it is still running.">
+            <ui:ToggleSwitch IsChecked="{Binding AutoRejoinEnabled, Mode=TwoWay}" />
+        </controls:OptionControl>
+
         <!-- Performance Features -->
         <TextBlock FontSize="20" FontWeight="Medium" Margin="0,20,0,0" Foreground="{DynamicResource TextFillColorPrimaryBrush}">
             <Run Text="⚡ Performance Features" />

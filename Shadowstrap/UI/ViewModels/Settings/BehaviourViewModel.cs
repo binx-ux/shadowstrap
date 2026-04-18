@@ -30,6 +30,12 @@ namespace Shadowstrap.UI.ViewModels.Settings
             set => App.Settings.Prop.RamCleanerEnabled = value;
         }
 
+        public bool AutoRejoinEnabled
+        {
+            get => App.Settings.Prop.AutoRejoinEnabled;
+            set => App.Settings.Prop.AutoRejoinEnabled = value;
+        }
+
         public bool ConfirmLaunches
         {
             get => App.Settings.Prop.ConfirmLaunches;

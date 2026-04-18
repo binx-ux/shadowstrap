@@ -59,6 +59,46 @@ namespace Shadowstrap.UI.ViewModels.Settings
 
         public ICommand OpenModsFolderCommand => new RelayCommand(OpenModsFolder);
 
+        private static readonly string DeathSoundModPath =
+            Path.Combine(Paths.Modifications, "content", "sounds", "ouch.ogg");
+
+        public bool HasCustomDeathSound => !String.IsNullOrEmpty(App.Settings.Prop.CustomDeathSoundPath);
+
+        public string CustomDeathSoundLabel => HasCustomDeathSound
+            ? Path.GetFileName(App.Settings.Prop.CustomDeathSoundPath)
+            : "No custom sound set";
+
+        private void ManageCustomDeathSound()
+        {
+            if (HasCustomDeathSound)
+            {
+                App.Settings.Prop.CustomDeathSoundPath = "";
+                if (File.Exists(DeathSoundModPath))
+                    File.Delete(DeathSoundModPath);
+            }
+            else
+            {
+                var dialog = new OpenFileDialog
+                {
+                    Title = "Select death sound",
+                    Filter = "Audio Files (*.ogg;*.mp3;*.wav)|*.ogg;*.mp3;*.wav"
+                };
+
+                if (dialog.ShowDialog() != true)
+                    return;
+
+                string dir = Path.GetDirectoryName(DeathSoundModPath)!;
+                Directory.CreateDirectory(dir);
+                File.Copy(dialog.FileName, DeathSoundModPath, overwrite: true);
+                App.Settings.Prop.CustomDeathSoundPath = dialog.FileName;
+            }
+
+            OnPropertyChanged(nameof(HasCustomDeathSound));
+            OnPropertyChanged(nameof(CustomDeathSoundLabel));
+        }
+
+        public ICommand ManageCustomDeathSoundCommand => new RelayCommand(ManageCustomDeathSound);
+
         public Visibility ChooseCustomFontVisibility => !String.IsNullOrEmpty(TextFontTask.NewState) ? Visibility.Collapsed : Visibility.Visible;
 
         public Visibility DeleteCustomFontVisibility => !String.IsNullOrEmpty(TextFontTask.NewState) ? Visibility.Visible : Visibility.Collapsed;

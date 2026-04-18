@@ -691,11 +691,12 @@ namespace Shadowstrap
             {
                 using var ipl = new InterProcessLock("Watcher", TimeSpan.FromSeconds(5));
 
-                var watcherData = new WatcherData 
-                { 
-                    ProcessId = _appPid, 
-                    LogFile = logFileName, 
-                    AutoclosePids = autoclosePids
+                var watcherData = new WatcherData
+                {
+                    ProcessId = _appPid,
+                    LogFile = logFileName,
+                    AutoclosePids = autoclosePids,
+                    LaunchUrl = _launchCommandLine
                 };
 
                 string watcherDataArg = Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(watcherData)));
