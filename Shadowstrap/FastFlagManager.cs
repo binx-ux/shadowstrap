@@ -1,4 +1,5 @@
-﻿using Shadowstrap.Enums.FlagPresets;
+﻿using Shadowstrap.Enums;
+using Shadowstrap.Enums.FlagPresets;
 
 namespace Shadowstrap
 {
@@ -52,6 +53,49 @@ namespace Shadowstrap
             { TextureQuality.Level2, "2" },
             { TextureQuality.Level3, "3" },
         };
+
+        private static readonly string[] PerformanceFlagKeys =
+        {
+            "DFIntTaskSchedulerTargetFps",
+            "FIntRenderShadowIntensity",
+            "DFIntCSGLevelOfDetailSwitchingDistance",
+            "DFIntCSGLevelOfDetailSwitchingDistanceL12",
+            "DFIntCSGLevelOfDetailSwitchingDistanceL23",
+            "DFIntCSGLevelOfDetailSwitchingDistanceL34",
+            "FFlagGlobalWindRendering",
+            "FFlagGlobalWindActivated",
+            "DFIntCullFactorPixelThresholdShadowMapHighQuality",
+            "DFIntCullFactorPixelThresholdShadowMapLowQuality",
+        };
+
+        public void ApplyPerformancePreset(PerformancePreset preset)
+        {
+            foreach (var key in PerformanceFlagKeys)
+                SetValue(key, null);
+
+            switch (preset)
+            {
+                case PerformancePreset.Balanced:
+                    SetValue("DFIntTaskSchedulerTargetFps", "9999");
+                    SetValue("FIntRenderShadowIntensity", "1");
+                    SetValue("FFlagGlobalWindRendering", "False");
+                    SetValue("FFlagGlobalWindActivated", "False");
+                    break;
+
+                case PerformancePreset.MaxPerformance:
+                    SetValue("DFIntTaskSchedulerTargetFps", "9999");
+                    SetValue("FIntRenderShadowIntensity", "0");
+                    SetValue("DFIntCSGLevelOfDetailSwitchingDistance", "0");
+                    SetValue("DFIntCSGLevelOfDetailSwitchingDistanceL12", "0");
+                    SetValue("DFIntCSGLevelOfDetailSwitchingDistanceL23", "0");
+                    SetValue("DFIntCSGLevelOfDetailSwitchingDistanceL34", "0");
+                    SetValue("DFIntCullFactorPixelThresholdShadowMapHighQuality", "2147483647");
+                    SetValue("DFIntCullFactorPixelThresholdShadowMapLowQuality", "2147483647");
+                    SetValue("FFlagGlobalWindRendering", "False");
+                    SetValue("FFlagGlobalWindActivated", "False");
+                    break;
+            }
+        }
 
         // all fflags are stored as strings
         // to delete a flag, set the value as null

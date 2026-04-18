@@ -3,6 +3,7 @@ using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
 
+using Shadowstrap.Enums;
 using Shadowstrap.Enums.FlagPresets;
 
 namespace Shadowstrap.UI.ViewModels.Settings
@@ -12,12 +13,22 @@ namespace Shadowstrap.UI.ViewModels.Settings
         private Dictionary<string, object>? _preResetFlags;
 
         public event EventHandler? RequestPageReloadEvent;
-        
+
         public event EventHandler? OpenFlagEditorEvent;
 
         private void OpenFastFlagEditor() => OpenFlagEditorEvent?.Invoke(this, EventArgs.Empty);
 
         public ICommand OpenFastFlagEditorCommand => new RelayCommand(OpenFastFlagEditor);
+
+        public ICommand ApplyDefaultPresetCommand => new RelayCommand(() => ApplyPerformancePreset(PerformancePreset.Default));
+        public ICommand ApplyBalancedPresetCommand => new RelayCommand(() => ApplyPerformancePreset(PerformancePreset.Balanced));
+        public ICommand ApplyMaxPerformancePresetCommand => new RelayCommand(() => ApplyPerformancePreset(PerformancePreset.MaxPerformance));
+
+        private void ApplyPerformancePreset(PerformancePreset preset)
+        {
+            App.FastFlags.ApplyPerformancePreset(preset);
+            RequestPageReloadEvent?.Invoke(this, EventArgs.Empty);
+        }
 
         public Visibility CanShowFastFlagEditor => App.IsStudioInstalled ? Visibility.Visible : Visibility.Collapsed;
 

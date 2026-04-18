@@ -1,5 +1,37 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="NewTextEditorBackground" Color="#2D2D2D" />
-    <SolidColorBrush x:Key="NewTextEditorForeground" Color="White" />
+
+    <!-- Text editor -->
+    <SolidColorBrush x:Key="NewTextEditorBackground" Color="#1E1E2E" />
+    <SolidColorBrush x:Key="NewTextEditorForeground" Color="#CDD6F4" />
     <SolidColorBrush x:Key="NewTextEditorLink" Color="#8B5CF6" />
+
+    <!-- Shadowstrap accent palette -->
+    <Color x:Key="ShadowAccentColor">#8B5CF6</Color>
+    <Color x:Key="ShadowAccentDark">#6D28D9</Color>
+    <Color x:Key="ShadowAccentLight">#A78BFA</Color>
+
+    <SolidColorBrush x:Key="ShadowAccentBrush" Color="#8B5CF6" />
+    <SolidColorBrush x:Key="ShadowAccentDarkBrush" Color="#6D28D9" />
+    <SolidColorBrush x:Key="ShadowAccentLightBrush" Color="#A78BFA" />
+    <SolidColorBrush x:Key="ShadowAccentSubtleBrush" Color="#3D2D6B" />
+    <SolidColorBrush x:Key="ShadowSurfaceBrush" Color="#1a0a2e" />
+    <SolidColorBrush x:Key="ShadowSurfaceDeepBrush" Color="#0f0720" />
+    <SolidColorBrush x:Key="ShadowTextMutedBrush" Color="#8B7AB8" />
+    <SolidColorBrush x:Key="ShadowTextAccentBrush" Color="#C4B5FD" />
+
+    <LinearGradientBrush x:Key="ShadowAccentGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="#8B5CF6" Offset="0" />
+        <GradientStop Color="#6D28D9" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ShadowSidebarGradient" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#130828" Offset="0" />
+        <GradientStop Color="#0d051e" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ShadowCardGradient" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#1a0a2e" Offset="0" />
+        <GradientStop Color="#140820" Offset="1" />
+    </LinearGradientBrush>
+
 </ResourceDictionary>

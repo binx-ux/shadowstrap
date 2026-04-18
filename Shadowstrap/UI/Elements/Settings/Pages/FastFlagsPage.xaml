@@ -8,25 +8,164 @@
       xmlns:resources="clr-namespace:Shadowstrap.Resources"
       xmlns:controls="clr-namespace:Shadowstrap.UI.Elements.Controls"
       mc:Ignorable="d"
-      d:DesignHeight="1500" d:DesignWidth="800"
+      d:DesignHeight="1800" d:DesignWidth="800"
       Title="FastFlagsPage"
       Scrollable="True"
       Loaded="Page_Loaded">
     <StackPanel Margin="0,0,14,14">
         <TextBlock Margin="0,0,0,16" Text="{x:Static resources:Strings.Menu_FastFlags_Description}" FontSize="14" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
 
-        <controls:OptionControl 
+        <controls:OptionControl
             Header="{x:Static resources:Strings.Menu_FastFlags_ManagerEnabled_Title}"
             Description="{x:Static resources:Strings.Menu_FastFlags_ManagerEnabled_Description}">
             <ui:ToggleSwitch IsChecked="{Binding UseFastFlagManager, Mode=TwoWay}" />
         </controls:OptionControl>
 
-        <TextBlock Text="{x:Static resources:Strings.Common_Presets}" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
+        <!-- Performance Presets -->
+        <TextBlock FontSize="20" FontWeight="Medium" Margin="0,20,0,0" Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+            <Run Text="⚡ Performance Presets" />
+        </TextBlock>
+        <Border Height="2" Margin="0,6,0,10" CornerRadius="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#8B5CF6" Offset="0" />
+                    <GradientStop Color="#6D28D9" Offset="0.6" />
+                    <GradientStop Color="Transparent" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <TextBlock Text="One-click FastFlag combinations for different use cases. Applying a preset will adjust your current rendering flags."
+                   FontSize="13" Foreground="{DynamicResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" Margin="0,0,0,10" />
 
-        <TextBlock Text="{x:Static resources:Strings.Menu_FastFlags_Presets_Categories_Rendering}" FontSize="16" FontWeight="Medium" Margin="0,16,0,0" />
-        <controls:MarkdownTextBlock MarkdownText="{Binding Source={x:Static resources:Strings.Menu_FastFlags_Presets_D3DExclusiveFullscreenInfo}, Converter={StaticResource StringFormatConverter}, ConverterParameter='https://github.com/binx-ux/shadowstrap/wiki/features/engine-settings/#exclusive-fullscreen'}"  Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="8" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="8" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <controls:OptionControl 
+            <!-- Default Preset Card -->
+            <Border Grid.Column="0" CornerRadius="8" Padding="16" Cursor="Hand">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="{DynamicResource ControlFillColorDefaultBrush}" />
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource ControlElevationBorderBrush}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#8B5CF6" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <TextBlock Text="🔄" FontSize="28" HorizontalAlignment="Center" Margin="0,0,0,8" />
+                    <TextBlock Text="Default" FontSize="15" FontWeight="SemiBold" HorizontalAlignment="Center" />
+                    <TextBlock Text="Remove all performance flags and restore Roblox defaults."
+                               FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                               TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Margin="0,6,0,12" />
+                    <ui:Button Content="Apply" HorizontalAlignment="Stretch" Command="{Binding ApplyDefaultPresetCommand}" />
+                </StackPanel>
+            </Border>
+
+            <!-- Balanced Preset Card -->
+            <Border Grid.Column="2" CornerRadius="8" Padding="16" Cursor="Hand">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="{DynamicResource ControlFillColorDefaultBrush}" />
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource ControlElevationBorderBrush}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#8B5CF6" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <TextBlock Text="⚖️" FontSize="28" HorizontalAlignment="Center" Margin="0,0,0,8" />
+                    <TextBlock Text="Balanced" FontSize="15" FontWeight="SemiBold" HorizontalAlignment="Center" />
+                    <TextBlock Text="Uncapped FPS + reduced wind and shadows. Good for mid-range PCs."
+                               FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                               TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Margin="0,6,0,12" />
+                    <ui:Button Content="Apply" HorizontalAlignment="Stretch" Appearance="Secondary" Command="{Binding ApplyBalancedPresetCommand}" />
+                </StackPanel>
+            </Border>
+
+            <!-- Max Performance Preset Card -->
+            <Border Grid.Column="4" CornerRadius="8" Padding="16" Cursor="Hand">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="#1a0a2e" Offset="0" />
+                                    <GradientStop Color="#2d1b4e" Offset="1" />
+                                </LinearGradientBrush>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="BorderBrush" Value="#8B5CF6" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#A78BFA" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <TextBlock Text="🚀" FontSize="28" HorizontalAlignment="Center" Margin="0,0,0,8" />
+                    <TextBlock Text="Max Performance" FontSize="15" FontWeight="SemiBold" HorizontalAlignment="Center" Foreground="#A78BFA" />
+                    <TextBlock Text="Uncapped FPS, no shadows, no wind, minimum LOD. Maximum frame rate at reduced visuals."
+                               FontSize="12" Foreground="#C4B5FD"
+                               TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Margin="0,6,0,12" />
+                    <ui:Button Content="Apply" HorizontalAlignment="Stretch" Appearance="Primary" Command="{Binding ApplyMaxPerformancePresetCommand}" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Hone.gg callout -->
+        <Border Margin="0,10,0,0" CornerRadius="8" Padding="14,10" BorderThickness="1" BorderBrush="#3D2D6B">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#0f0720" Offset="0" />
+                    <GradientStop Color="#1a0a2e" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock FontSize="13" FontWeight="SemiBold" Foreground="#A78BFA">
+                        <Run Text="💜  Boost further with Hone.gg" />
+                    </TextBlock>
+                    <TextBlock FontSize="12" Foreground="#8B7AB8" TextWrapping="Wrap" Margin="0,3,0,0"
+                               Text="Reduce ping and optimize your network before launching Roblox. Enable Hone.gg in the Integrations tab." />
+                </StackPanel>
+                <ui:Button Grid.Column="1" Margin="12,0,0,0" Content="Integrations →" Appearance="Secondary"
+                           VerticalAlignment="Center" FontSize="12" />
+            </Grid>
+        </Border>
+
+        <!-- Rendering section -->
+        <TextBlock Text="{x:Static resources:Strings.Common_Presets}" FontSize="20" FontWeight="Medium" Margin="0,20,0,0" />
+        <Border Height="2" Margin="0,6,0,10" CornerRadius="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#8B5CF6" Offset="0" />
+                    <GradientStop Color="Transparent" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <TextBlock Text="{x:Static resources:Strings.Menu_FastFlags_Presets_Categories_Rendering}" FontSize="16" FontWeight="Medium" Margin="0,0,0,6" />
+        <controls:MarkdownTextBlock MarkdownText="{Binding Source={x:Static resources:Strings.Menu_FastFlags_Presets_D3DExclusiveFullscreenInfo}, Converter={StaticResource StringFormatConverter}, ConverterParameter='https://github.com/binx-ux/shadowstrap/wiki/features/engine-settings/#exclusive-fullscreen'}" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+
+        <controls:OptionControl
             Header="{x:Static resources:Strings.Menu_FastFlags_Presets_MSAA_Title}">
             <ComboBox Margin="5,0,0,0" Padding="10,5,10,5" Width="200" ItemsSource="{Binding MSAALevels.Keys, Mode=OneTime}" Text="{Binding SelectedMSAALevel, Mode=TwoWay}">
                 <ComboBox.ItemTemplate>
@@ -37,14 +176,14 @@
             </ComboBox>
         </controls:OptionControl>
 
-        <controls:OptionControl 
-            Header="{x:Static resources:Strings.Menu_FastFlags_Presets_FixDisplayScaling_Title}" 
-            Description="{x:Static resources:Strings.Menu_FastFlags_Presets_FixDisplayScaling_Description}" 
+        <controls:OptionControl
+            Header="{x:Static resources:Strings.Menu_FastFlags_Presets_FixDisplayScaling_Title}"
+            Description="{x:Static resources:Strings.Menu_FastFlags_Presets_FixDisplayScaling_Description}"
             HelpLink="https://github.com/binx-ux/shadowstrap/wiki/features/engine-settings/#preserving-rendering-quality">
             <ui:ToggleSwitch IsChecked="{Binding FixDisplayScaling, Mode=TwoWay}" />
         </controls:OptionControl>
 
-        <controls:OptionControl 
+        <controls:OptionControl
             Header="{x:Static resources:Strings.Menu_FastFlags_Presets_RenderingMode_Title}">
             <ComboBox Margin="5,0,0,0" Padding="10,5,10,5" Width="200" ItemsSource="{Binding RenderingModes.Keys, Mode=OneTime}" Text="{Binding SelectedRenderingMode, Mode=TwoWay}">
                 <ComboBox.ItemTemplate>
@@ -55,7 +194,7 @@
             </ComboBox>
         </controls:OptionControl>
 
-        <controls:OptionControl 
+        <controls:OptionControl
             Header="{x:Static resources:Strings.Menu_FastFlags_Presets_TextureQuality_Title}">
             <ComboBox Margin="5,0,0,0" Padding="10,5,10,5" Width="200" ItemsSource="{Binding TextureQualities.Keys, Mode=OneTime}" Text="{Binding SelectedTextureQuality, Mode=TwoWay}">
                 <ComboBox.ItemTemplate>
@@ -66,7 +205,7 @@
             </ComboBox>
         </controls:OptionControl>
 
-        <controls:OptionControl 
+        <controls:OptionControl
             Margin="0,24,0,0"
             Header="{x:Static resources:Strings.Menu_FastFlags_Reset_Title}">
             <ui:ToggleSwitch IsChecked="{Binding ResetConfiguration, Mode=TwoWay}" />
@@ -75,7 +214,7 @@
         <ui:CardAction Margin="0,8,0,0" Icon="EditSettings24" Command="{Binding OpenFastFlagEditorCommand}" Visibility="{Binding CanShowFastFlagEditor}">
             <StackPanel>
                 <TextBlock FontSize="14" Text="{x:Static resources:Strings.Menu_FastFlagEditor_Title}" />
-                <TextBlock Margin="0,2,0,0" FontSize="12" Text="{x:Static resources:Strings.Menu_FastFlags_Editor_Description}" Padding="0,0,16,0"  Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
+                <TextBlock Margin="0,2,0,0" FontSize="12" Text="{x:Static resources:Strings.Menu_FastFlags_Editor_Description}" Padding="0,0,16,0" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
             </StackPanel>
         </ui:CardAction>
     </StackPanel>

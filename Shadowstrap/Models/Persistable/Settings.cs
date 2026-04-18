@@ -33,5 +33,9 @@ namespace Shadowstrap.Models.Persistable
 
         // mod preset configuration
         public bool UseDisableAppPatch { get; set; } = false;
+
+        // hone.gg integration
+        public bool UseHoneGG { get; set; } = false;
+        public string HoneGGPath { get; set; } = "";
     }
 }

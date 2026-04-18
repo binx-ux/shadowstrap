@@ -153,6 +153,28 @@
         </Setter>
     </Style>
 
+    <!-- Section header gradient divider -->
+    <Style x:Key="SectionDividerStyle" TargetType="Border">
+        <Setter Property="Height" Value="2" />
+        <Setter Property="Margin" Value="0,6,0,10" />
+        <Setter Property="CornerRadius" Value="1" />
+        <Setter Property="Background" Value="{DynamicResource ShadowAccentGradient}" />
+    </Style>
+
+    <!-- Preset card with purple hover border -->
+    <Style x:Key="PresetCardStyle" TargetType="Border">
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="16" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="{DynamicResource ControlFillColorDefaultBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ControlElevationBorderBrush}" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource ShadowAccentBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!--  Taken from https://github.com/icsharpcode/AvalonEdit/blob/30cad99ce905412ed5f5e847e3c00e72e69aee77/ICSharpCode.AvalonEdit/TextEditor.xaml  -->
     <Style x:Key="NewTextEditor" TargetType="{x:Type avalonedit:TextEditor}">
         <Setter Property="Foreground" Value="{DynamicResource NewTextEditorForeground}" />

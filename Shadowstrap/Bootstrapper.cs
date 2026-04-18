@@ -600,6 +600,9 @@ namespace Shadowstrap
                 logCreatedEvent.Set();
             };
 
+            if (App.Settings.Prop.UseHoneGG)
+                LaunchHoneGG(LOG_IDENT);
+
             // v2.2.0 - byfron will trip if we keep a process handle open for over a minute, so we're doing this now
             try
             {
@@ -758,6 +761,51 @@ namespace Shadowstrap
 #endregion
 
         #region App Install
+        private void LaunchHoneGG(string parentLogIdent)
+        {
+            const string LOG_IDENT = "Bootstrapper::LaunchHoneGG";
+
+            var candidates = new[]
+            {
+                App.Settings.Prop.HoneGGPath,
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs", "hone", "Hone.exe"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "hone", "Hone.exe"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "Hone", "Hone.exe"),
+            };
+
+            string? honeExe = candidates.FirstOrDefault(File.Exists);
+
+            if (honeExe is null)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Hone.gg executable not found, skipping");
+                return;
+            }
+
+            App.Logger.WriteLine(LOG_IDENT, $"Launching Hone.gg from {honeExe}");
+
+            try
+            {
+                var existing = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(honeExe));
+                if (existing.Length > 0)
+                {
+                    App.Logger.WriteLine(LOG_IDENT, "Hone.gg already running, skipping launch");
+                    return;
+                }
+
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = honeExe,
+                    UseShellExecute = true
+                });
+
+                Thread.Sleep(2500);
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteLine(LOG_IDENT, $"Failed to launch Hone.gg: {ex.Message}");
+            }
+        }
+
         private async Task<bool> CheckForUpdates()
         {
             const string LOG_IDENT = "Bootstrapper::CheckForUpdates";
