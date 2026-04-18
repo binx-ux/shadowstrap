@@ -1,88 +1,139 @@
-﻿> [!CAUTION]
-> The only official places to download Shadowstrap are this GitHub repository and [binx-ux.com](https://binx-ux.com). Any other websites offering downloads or claiming to be us are not owned by us.
-
-> [!IMPORTANT]
-> Shadowstrap is not under active development anymore. Any issues or pull requests opened may take a while to get a response.
-
-<p align="center">
-    <img src="https://github.com/binx-ux/Shadowstrap/raw/main/Images/Shadowstrap-full-dark.png#gh-dark-mode-only" width="380">
-    <img src="https://github.com/binx-ux/Shadowstrap/raw/main/Images/Shadowstrap-full-light.png#gh-light-mode-only" width="380">
-</p>
-
 <div align="center">
 
-[![License][shield-repo-license]][repo-license]
-[![GitHub Workflow Status][shield-repo-workflow]][repo-actions]
-[![Crowdin][shield-crowdin-status]][crowdin-project]
-[![Downloads][shield-repo-releases]][repo-releases]
-[![Version][shield-repo-latest]][repo-latest]
-[![Discord][shield-discord-server]][discord-invite]
-[![lol][shield-tenor-meme]][tenor-gif]
+<img src="https://raw.githubusercontent.com/binx-ux/shadowstrap/main/Images/Shadowstrap-full-dark.png#gh-dark-mode-only" width="420" alt="Shadowstrap" />
+<img src="https://raw.githubusercontent.com/binx-ux/shadowstrap/main/Images/Shadowstrap-full-light.png#gh-light-mode-only" width="420" alt="Shadowstrap" />
+
+### A sleek, feature-rich Roblox bootstrapper replacement
+
+[![License][badge-license]][url-license]
+[![Release][badge-release]][url-releases]
+[![Downloads][badge-downloads]][url-releases]
+[![Discord][badge-discord]][url-discord]
+[![Stars][badge-stars]][url-repo]
+
+**[Download](https://github.com/binx-ux/shadowstrap/releases/latest)** · **[Website](https://binx-ux.github.io/shadowstrap)** · **[Wiki](https://github.com/binx-ux/shadowstrap/wiki)** · **[Discord](https://discord.gg/nKjV3mGq6R)**
 
 </div>
 
-----
+---
 
-Shadowstrap is a third-party replacement for the standard Roblox bootstrapper, providing additional useful features and improvements.
+> [!CAUTION]
+> The only official places to download Shadowstrap are this GitHub repository and the [official website](https://binx-ux.github.io/shadowstrap). Any other source is not affiliated with us.
 
-Running into a problem or need help with something? [Check out the Wiki](https://github.com/binx-ux/Shadowstrap/wiki). If you can't find anything, or would like to suggest something, please [submit an issue](https://github.com/binx-ux/Shadowstrap/issues).
+> [!NOTE]
+> Shadowstrap is Windows-only. You will need the [.NET 6 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) if it is not already installed — you will be prompted automatically if it's missing.
 
-Shadowstrap is only supported for PCs running Windows.
+---
 
-## Frequently Asked Questions
+## What is Shadowstrap?
 
-**Q: Is this malware?**
+Shadowstrap is a free, open-source replacement for the standard Roblox bootstrapper. It replaces the default Roblox launcher with a fully-featured settings menu, performance tools, integrations, and mod support — all in one sleek purple-themed package.
 
-**A:** No. The source code here is viewable to all, and it'd be impossible for us to slip anything malicious into the downloads without anyone noticing. Just be sure you're downloading it from an official source. The only two official sources are this GitHub repository and [binx-ux.com](https://binx-ux.com).
+It does **not** modify the Roblox game client, inject code, or do anything that would put your account at risk.
 
-**Q: Can using this get me banned?**
-
-**A:** No, it shouldn't. Shadowstrap doesn't interact with the Roblox client in the same way that exploits do. [Read more about that here.](https://github.com/binx-ux/Shadowstrap/wiki/Why-it's-not-reasonably-possible-for-you-to-be-banned-by-Shadowstrap)
+---
 
 ## Features
 
-- Hassle-free Discord Rich Presence to let your friends know what you're playing at a glance
-- Simple support for modding of content files for customizability (death sound, mouse cursor, etc)
-- See where your server is geographically located (courtesy of [ipinfo.io](https://ipinfo.io))
-- Ability to configure graphics fidelity and UI experience
+### Performance
+| Feature | Description |
+|---|---|
+| **Performance Presets** | One-click FastFlag bundles — Default, Balanced, Max Performance |
+| **FPS Counter** | In-game overlay via `FFlagDebugDisplayFPS` |
+| **Process Priority Boost** | Set Roblox CPU priority to Above Normal, High, or Realtime |
+| **RAM Cleaner** | Trim process working sets before launch to free physical RAM |
+| **Multi-Instance** | Run multiple Roblox windows simultaneously |
 
-## Installing
-Download the [latest release of Shadowstrap](https://github.com/binx-ux/Shadowstrap/releases/latest), and run it. Configure your preferences if needed, and install. That's about it!
+### Launch & Behaviour
+| Feature | Description |
+|---|---|
+| **Auto-Rejoin** | Automatically relaunches Roblox 5 s after it exits |
+| **Hone.gg Integration** | Auto-starts Hone.gg network optimizer before each launch |
+| **Custom Integrations** | Launch any external app alongside Roblox |
+| **Background Updates** | Keep Roblox up to date silently in the background |
 
-Alternatively, you can install Shadowstrap via [Winget](https://winstall.app/apps/pizzaboxer.Shadowstrap) by running this in a Command Prompt window:
+### Mods & Appearance
+| Feature | Description |
+|---|---|
+| **Custom Death Sound** | Replace the Roblox death sound with your own audio file |
+| **Custom Cursor** | 2006 and 2013 era cursors built-in, or drop in your own |
+| **Custom Font** | Replace the in-game UI font with any `.ttf`, `.otf`, or `.ttc` |
+| **Old Character Sounds** | Restore the classic pre-2022 jump, land, and walk sounds |
+| **Old Avatar Background** | Restore the classic avatar editor background |
+
+### Integrations
+| Feature | Description |
+|---|---|
+| **Discord Rich Presence** | Show your current game, server region, and playtime on Discord |
+| **Activity Tracking** | Track which games you play and for how long |
+| **Server Location** | See the geographic location of your current server |
+| **Fast Flag Editor** | Directly edit any Roblox FastFlag with a built-in JSON editor |
+
+---
+
+## Installation
+
+1. Download the latest `Shadowstrap.exe` from the [Releases page](https://github.com/binx-ux/shadowstrap/releases/latest)
+2. Run it — Shadowstrap will install itself and register as the Roblox protocol handler
+3. Launch Roblox from the website or Start Menu as normal
+
+> Windows SmartScreen may show a warning the first time. Click **More info → Run anyway**. This is expected for new/unsigned software and does not indicate malware.
+
+---
+
+## FAQ
+
+**Q: Is this malware?**
+A: No. The full source code is publicly viewable here. Downloads are only served from this repository.
+
+**Q: Will I get banned?**
+A: No. Shadowstrap does not interact with the Roblox client the way exploits do. It only replaces the bootstrapper/launcher. [Read more.](https://github.com/binx-ux/shadowstrap/wiki/ban-safety)
+
+**Q: Does it work with Roblox Studio?**
+A: Studio launching is supported. Some player-specific features (Discord RPC, activity tracking) only apply to the player client.
+
+**Q: How do I uninstall?**
+A: Open Shadowstrap → Settings → Shadowstrap tab → Uninstall. This will restore the default Roblox bootstrapper.
+
+---
+
+## Building from Source
+
+```bash
+git clone --recurse-submodules https://github.com/binx-ux/shadowstrap
+cd shadowstrap
+dotnet build Shadowstrap/Shadowstrap.csproj -c Release
 ```
-> winget install Shadowstrap
+
+To publish a single-file executable:
+
+```bash
+dotnet publish Shadowstrap/Shadowstrap.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o ./publish
 ```
 
-You will also need the [.NET 6 Desktop Runtime](https://aka.ms/dotnet-core-applaunch?missing_runtime=true&arch=x64&rid=win11-x64&apphost_version=6.0.16&gui=true). If you don't already have it installed, you'll be prompted to install it anyway. Be sure to install Shadowstrap after you've installed this.
+Requires [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0).
 
-It's not unlikely that Windows Smartscreen will show a popup when you run Shadowstrap for the first time. This happens because it's an unknown program, not because it's actually detected as being malicious. To dismiss it, just click on "More info" and then "Run anyway".
+---
 
-Once installed, Shadowstrap is added to your Start Menu, where you can access the menu and reconfigure your preferences if needed.
+## Contributing
 
-## Code
+Pull requests are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening one. For bugs and feature requests, use the [issue tracker](https://github.com/binx-ux/shadowstrap/issues).
 
-Shadowstrap uses the [WPF UI](https://github.com/lepoco/wpfui) library for the user interface design. We currently use and maintain our own fork of WPF UI at [binx-ux/wpfui](https://github.com/binx-ux/wpfui).
+---
 
+## License
 
-[shield-repo-license]:  https://img.shields.io/github/license/binx-ux/Shadowstrap
-[shield-repo-workflow]: https://img.shields.io/github/actions/workflow/status/binx-ux/Shadowstrap/ci-release.yml?branch=main&label=builds
-[shield-repo-releases]: https://img.shields.io/github/downloads/binx-ux/Shadowstrap/latest/total?color=981bfe
-[shield-repo-latest]:   https://img.shields.io/github/v/release/binx-ux/Shadowstrap?color=7a39fb
+Shadowstrap is licensed under the [MIT License](LICENSE).
 
-[shield-crowdin-status]: https://badges.crowdin.net/Shadowstrap/localized.svg
-[shield-discord-server]: https://img.shields.io/discord/1099468797410283540?logo=discord&logoColor=white&label=discord&color=4d3dff
-[shield-tenor-meme]:     https://img.shields.io/badge/mom_made-pizza_rolls-orange
+---
 
-[repo-license]:  https://github.com/binx-ux/Shadowstrap/blob/main/LICENSE
-[repo-actions]:  https://github.com/binx-ux/Shadowstrap/actions
-[repo-releases]: https://github.com/binx-ux/Shadowstrap/releases
-[repo-latest]:   https://github.com/binx-ux/Shadowstrap/releases/latest
+[badge-license]:   https://img.shields.io/github/license/binx-ux/shadowstrap?color=8b5cf6&style=for-the-badge
+[badge-release]:   https://img.shields.io/github/v/release/binx-ux/shadowstrap?color=8b5cf6&style=for-the-badge&label=release
+[badge-downloads]: https://img.shields.io/github/downloads/binx-ux/shadowstrap/total?color=8b5cf6&style=for-the-badge&label=downloads
+[badge-discord]:   https://img.shields.io/discord/1099468797410283540?color=8b5cf6&style=for-the-badge&logo=discord&logoColor=white&label=discord
+[badge-stars]:     https://img.shields.io/github/stars/binx-ux/shadowstrap?color=8b5cf6&style=for-the-badge&label=stars
 
-[crowdin-project]: https://crowdin.com/project/Shadowstrap
-[discord-invite]:  https://discord.gg/nKjV3mGq6R
-[tenor-gif]:       https://media.tenor.com/FIkSGbGycmAAAAAd/manly-roblox.gif
-
-## Code signing policy
-
-Thanks to [SignPath.io](https://signpath.io/) for providing a free code signing service, and the [SignPath Foundation](https://signpath.org/) for providing the free code signing certificate.
+[url-license]:  https://github.com/binx-ux/shadowstrap/blob/main/LICENSE
+[url-releases]: https://github.com/binx-ux/shadowstrap/releases
+[url-discord]:  https://discord.gg/nKjV3mGq6R
+[url-repo]:     https://github.com/binx-ux/shadowstrap

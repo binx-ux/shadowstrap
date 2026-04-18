@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shadowstrap — Roblox Bootstrapper</title>
+  <meta name="description" content="A sleek, feature-rich replacement for the Roblox bootstrapper. Performance presets, Discord RPC, mods, and more." />
+  <meta property="og:title" content="Shadowstrap" />
+  <meta property="og:description" content="A sleek, feature-rich replacement for the Roblox bootstrapper." />
+  <meta property="og:image" content="https://raw.githubusercontent.com/binx-ux/shadowstrap/main/Images/Shadowstrap-full-dark.png" />
+  <meta name="theme-color" content="#8B5CF6" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-logo">Shadowstrap</span>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#install">Install</a>
+        <a href="https://github.com/binx-ux/shadowstrap/wiki" target="_blank">Wiki</a>
+        <a href="https://discord.gg/nKjV3mGq6R" target="_blank">Discord</a>
+        <a href="https://github.com/binx-ux/shadowstrap" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <div class="badge-row">
+        <span class="badge">Free &amp; Open Source</span>
+        <span class="badge">Windows</span>
+        <span class="badge">MIT License</span>
+      </div>
+      <h1>Roblox, <span class="gradient-text">the way it should be.</span></h1>
+      <p class="hero-sub">
+        Shadowstrap replaces the standard Roblox bootstrapper with a fully-featured launcher —
+        performance presets, Discord Rich Presence, mod support, multi-instance, and more.
+        All free. All open source.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/binx-ux/shadowstrap/releases/latest" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download for Windows
+        </a>
+        <a class="btn btn-secondary" href="https://github.com/binx-ux/shadowstrap" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View Source
+        </a>
+      </div>
+      <p class="hero-note">Requires Windows 10/11 · .NET 6 Desktop Runtime</p>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stats-inner">
+      <div class="stat">
+        <span class="stat-num" id="stat-downloads">—</span>
+        <span class="stat-label">Total Downloads</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num" id="stat-stars">—</span>
+        <span class="stat-label">GitHub Stars</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num" id="stat-version">—</span>
+        <span class="stat-label">Latest Version</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Everything you <span class="gradient-text">need</span></h2>
+        <p>All the features you'd want from a Roblox launcher, built in and ready to go.</p>
+      </div>
+      <div class="feature-grid">
+
+        <div class="feature-card feature-card--accent">
+          <div class="feature-icon">⚡</div>
+          <h3>Performance Presets</h3>
+          <p>One-click FastFlag bundles — Default, Balanced, and Max Performance — instantly tune Roblox's renderer for your hardware.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔁</div>
+          <h3>Auto-Rejoin</h3>
+          <p>Disconnected? Shadowstrap detects when Roblox exits and automatically relaunches it, dropping you back into the same server.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎮</div>
+          <h3>Discord Rich Presence</h3>
+          <p>Show your friends exactly which game you're playing, which server you're on, and how long you've been in-session.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🖼️</div>
+          <h3>Mod Support</h3>
+          <p>Replace cursors, fonts, sounds — including a custom death sound picker — by dropping files into the Modifications folder.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🪟</div>
+          <h3>Multi-Instance</h3>
+          <p>Run multiple Roblox windows simultaneously. Shadowstrap closes the singleton mutex so a second (or third) instance can start.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>Priority Boost</h3>
+          <p>Elevate Roblox's CPU scheduling priority to Above Normal, High, or Realtime so it gets the CPU time it needs.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🧹</div>
+          <h3>RAM Cleaner</h3>
+          <p>Trim other processes' working sets before Roblox launches, giving the game as much free physical RAM as possible.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>Hone.gg Integration</h3>
+          <p>Automatically launch the Hone.gg network optimizer before every Roblox session to reduce ping and stabilize your connection.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🏳️</div>
+          <h3>Fast Flag Editor</h3>
+          <p>Browse, edit, and manage any Roblox FastFlag directly from the built-in JSON editor without digging through config files.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTALL -->
+  <section class="install" id="install">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Get started in <span class="gradient-text">seconds</span></h2>
+        <p>No complicated setup. Just download and run.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Download</h4>
+            <p>Grab the latest <code>Shadowstrap.exe</code> from the releases page.</p>
+          </div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Run</h4>
+            <p>Launch the executable. If prompted by SmartScreen, click <em>More info → Run anyway</em>.</p>
+          </div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Play</h4>
+            <p>Open any Roblox game from the website or Start Menu. Shadowstrap handles the rest.</p>
+          </div>
+        </div>
+      </div>
+      <div class="install-cta">
+        <a class="btn btn-primary btn-large" href="https://github.com/binx-ux/shadowstrap/releases/latest" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Latest Release
+        </a>
+      </div>
+      <p class="install-note">
+        Requires Windows 10 or 11 (x64) and the
+        <a href="https://dotnet.microsoft.com/en-us/download/dotnet/6.0" target="_blank">.NET 6 Desktop Runtime</a>.
+        You will be prompted to install it if it's missing.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Common <span class="gradient-text">questions</span></h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>Is this malware?</h4>
+          <p>No. The entire source code is open and auditable right here on GitHub. Downloads come only from this repository.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Will I get banned?</h4>
+          <p>No. Shadowstrap only replaces the launcher/bootstrapper. It does not interact with the game client the way exploits do.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Does it work with Studio?</h4>
+          <p>Yes. Studio launching is supported, though some player-only features (Discord RPC, activity tracking) won't apply.</p>
+        </div>
+        <div class="faq-item">
+          <h4>How do I uninstall?</h4>
+          <p>Open Shadowstrap → Settings → Shadowstrap tab → Uninstall. This restores the default Roblox bootstrapper.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="nav-logo">Shadowstrap</span>
+        <p>Free and open source. Not affiliated with Roblox Corporation.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/binx-ux/shadowstrap" target="_blank">GitHub</a>
+        <a href="https://github.com/binx-ux/shadowstrap/releases" target="_blank">Releases</a>
+        <a href="https://github.com/binx-ux/shadowstrap/wiki" target="_blank">Wiki</a>
+        <a href="https://discord.gg/nKjV3mGq6R" target="_blank">Discord</a>
+        <a href="https://github.com/binx-ux/shadowstrap/blob/main/LICENSE" target="_blank">License</a>
+        <a href="https://github.com/binx-ux/shadowstrap/blob/main/CODE_OF_CONDUCT.md" target="_blank">Code of Conduct</a>
+      </div>
+      <p class="footer-copy">© 2024 binx-ux · MIT License</p>
+    </div>
+  </footer>
+
+  <script>
+    // Fetch live GitHub stats
+    fetch('https://api.github.com/repos/binx-ux/shadowstrap')
+      .then(r => r.json())
+      .then(data => {
+        const stars = data.stargazers_count;
+        document.getElementById('stat-stars').textContent =
+          stars >= 1000 ? (stars / 1000).toFixed(1) + 'k' : stars;
+      })
+      .catch(() => {});
+
+    fetch('https://api.github.com/repos/binx-ux/shadowstrap/releases')
+      .then(r => r.json())
+      .then(releases => {
+        let total = 0;
+        releases.forEach(r => r.assets.forEach(a => { total += a.download_count; }));
+        document.getElementById('stat-downloads').textContent =
+          total >= 1000 ? (total / 1000).toFixed(1) + 'k' : total || '—';
+
+        if (releases[0]) {
+          document.getElementById('stat-version').textContent =
+            releases[0].tag_name || '—';
+        }
+      })
+      .catch(() => {});
+  </script>
+
+</body>
+</html>
