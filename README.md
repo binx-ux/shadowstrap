@@ -11,7 +11,7 @@
 [![Discord][badge-discord]][url-discord]
 [![Stars][badge-stars]][url-repo]
 
-**[Download](https://github.com/binx-ux/shadowstrap/releases/latest)** · **[Website](https://binx-ux.github.io/shadowstrap)** · **[Wiki](https://github.com/binx-ux/shadowstrap/wiki)** · **[Discord](https://discord.gg/nKjV3mGq6R)**
+**[Download](https://github.com/binx-ux/shadowstrap/releases/latest)** · **[Website](https://binx-ux.github.io/NIX)** · **[Wiki](https://github.com/binx-ux/shadowstrap/wiki)** · **[Discord](https://discord.gg/nKjV3mGq6R)**
 
 </div>
 
