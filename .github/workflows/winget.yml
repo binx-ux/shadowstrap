@@ -10,5 +10,5 @@ jobs:
     steps:
       - uses: vedantmgoyal9/winget-releaser@main
         with:
-          identifier: pizzaboxer.Bloxstrap
+          identifier: binx-ux.Shadowstrap
           token: ${{ secrets.WINGET_TOKEN }}
