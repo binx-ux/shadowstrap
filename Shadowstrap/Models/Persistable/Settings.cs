@@ -47,6 +47,9 @@ namespace Shadowstrap.Models.Persistable
         // auto-rejoin
         public bool AutoRejoinEnabled { get; set; } = false;
 
+        // session summary popup shown after leaving a game
+        public bool ShowSessionSummary { get; set; } = true;
+
         // custom death sound (path stored so we can show current selection; the file lives in Modifications/)
         public string CustomDeathSoundPath { get; set; } = "";
     }

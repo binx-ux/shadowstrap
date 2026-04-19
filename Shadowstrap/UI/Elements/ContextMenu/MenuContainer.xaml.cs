@@ -7,6 +7,7 @@ using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
 
 using Shadowstrap.Integrations;
+using Shadowstrap.UI.Elements.Dialogs;
 
 namespace Shadowstrap.UI.Elements.ContextMenu
 {
@@ -21,9 +22,9 @@ namespace Shadowstrap.UI.Elements.ContextMenu
 
         private ActivityWatcher? _activityWatcher => _watcher.ActivityWatcher;
 
-        private ServerInformation? _serverInformationWindow;
-
-        private ServerHistory? _gameHistoryWindow;
+        private ServerInformation?   _serverInformationWindow;
+        private ServerHistory?       _gameHistoryWindow;
+        private ServerBrowserDialog? _serverBrowserWindow;
 
         public MenuContainer(Watcher watcher)
         {
@@ -84,6 +85,17 @@ namespace Shadowstrap.UI.Elements.ContextMenu
                 ServerDetailsMenuItem.Visibility = Visibility.Collapsed;
 
                 _serverInformationWindow?.Close();
+
+                // Show session summary popup if enabled and we have data
+                if (App.Settings.Prop.ShowSessionSummary && _activityWatcher?.History.Count > 0)
+                {
+                    var last = _activityWatcher.History.Last();
+                    if (last.TimeLeft is not null)
+                    {
+                        var summary = new SessionSummaryDialog(last);
+                        summary.Show();
+                    }
+                }
             });
         }
 
@@ -128,6 +140,20 @@ namespace Shadowstrap.UI.Elements.ContextMenu
                 return;
 
             _watcher.KillRobloxProcess();
+        }
+
+        private void ServerBrowserMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (_serverBrowserWindow is null)
+            {
+                _serverBrowserWindow = new ServerBrowserDialog();
+                _serverBrowserWindow.Closed += (_, _) => _serverBrowserWindow = null;
+            }
+
+            if (!_serverBrowserWindow.IsVisible)
+                _serverBrowserWindow.Show();
+            else
+                _serverBrowserWindow.Activate();
         }
 
         private void JoinLastServerMenuItem_Click(object sender, RoutedEventArgs e)

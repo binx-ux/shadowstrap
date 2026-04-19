@@ -73,6 +73,18 @@
                     </Grid>
                 </MenuItem.Header>
             </MenuItem>
+            <MenuItem Click="ServerBrowserMenuItem_Click">
+                <MenuItem.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="24" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ui:SymbolIcon Grid.Column="0" Symbol="ServerPlay20"/>
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="4,0,0,0" Text="Server Browser" />
+                    </Grid>
+                </MenuItem.Header>
+            </MenuItem>
             <MenuItem Click="CloseRobloxMenuItem_Click">
                 <MenuItem.Header>
                     <Grid>
