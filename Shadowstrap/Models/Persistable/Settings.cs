@@ -50,6 +50,9 @@ namespace Shadowstrap.Models.Persistable
         // session summary popup shown after leaving a game
         public bool ShowSessionSummary { get; set; } = true;
 
+        // last performance preset applied so the UI can highlight it on next open
+        public PerformancePreset LastPerformancePreset { get; set; } = PerformancePreset.Default;
+
         // custom death sound (path stored so we can show current selection; the file lives in Modifications/)
         public string CustomDeathSoundPath { get; set; } = "";
     }

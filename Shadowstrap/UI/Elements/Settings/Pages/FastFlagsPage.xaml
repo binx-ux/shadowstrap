@@ -63,6 +63,11 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="BorderBrush" Value="#8B5CF6" />
                             </Trigger>
+                            <DataTrigger Binding="{Binding CurrentPreset}" Value="Default">
+                                <Setter Property="BorderBrush" Value="#8B5CF6" />
+                                <Setter Property="BorderThickness" Value="2" />
+                                <Setter Property="Background" Value="#1a0a2e" />
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Border.Style>
@@ -87,6 +92,11 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="BorderBrush" Value="#8B5CF6" />
                             </Trigger>
+                            <DataTrigger Binding="{Binding CurrentPreset}" Value="Balanced">
+                                <Setter Property="BorderBrush" Value="#8B5CF6" />
+                                <Setter Property="BorderThickness" Value="2" />
+                                <Setter Property="Background" Value="#1a0a2e" />
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Border.Style>
@@ -118,6 +128,10 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="BorderBrush" Value="#A78BFA" />
                             </Trigger>
+                            <DataTrigger Binding="{Binding CurrentPreset}" Value="MaxPerformance">
+                                <Setter Property="BorderBrush" Value="#A78BFA" />
+                                <Setter Property="BorderThickness" Value="2" />
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Border.Style>
