@@ -86,10 +86,11 @@ namespace Shadowstrap.UI.Elements.ContextMenu
 
                 _serverInformationWindow?.Close();
 
-                // Show session summary popup if enabled and we have data
+                // Show session summary popup if enabled and we have data.
+                // History is ordered newest → oldest, so [0] / First() is the session we just left.
                 if (App.Settings.Prop.ShowSessionSummary && _activityWatcher?.History.Count > 0)
                 {
-                    var last = _activityWatcher.History.Last();
+                    var last = _activityWatcher.History.First();
                     if (last.TimeLeft is not null)
                     {
                         var summary = new SessionSummaryDialog(last);
