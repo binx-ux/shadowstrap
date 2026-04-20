@@ -19,7 +19,11 @@ namespace Shadowstrap.UI.Elements.Settings.Pages
             UserList.ItemsSource    = _custom;
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e) => Refresh();
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            try { Refresh(); }
+            catch (Exception ex) { App.Logger.WriteLine("GameProfilesPage::Page_Loaded", $"Exception in Refresh: {ex}"); }
+        }
 
         // ── setup ─────────────────────────────────────────────────────────────
 
@@ -195,9 +199,9 @@ namespace Shadowstrap.UI.Elements.Settings.Pages
         public GameFlagProfile Profile   { get; }
         public bool            IsBuiltIn { get; }
 
-        public string ThumbnailUrl
+        public string? ThumbnailUrl
         {
-            get => _thumbnailUrl ?? "";
+            get => _thumbnailUrl;
             set { _thumbnailUrl = value; PropertyChanged?.Invoke(this, new(nameof(ThumbnailUrl))); }
         }
 

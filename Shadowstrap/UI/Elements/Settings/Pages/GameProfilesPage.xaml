@@ -18,18 +18,27 @@
                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                    Text="Automatically write a custom FastFlag set when you join a specific game. Flags are saved to disk on join — use the session summary Rejoin button or Auto-Rejoin so they take effect immediately." />
 
-        <ui:CardControl Margin="0,8,0,0">
-            <ui:CardControl.Header>
-                <StackPanel>
+        <!-- Global enable toggle — plain Border avoids ButtonBase name-scope issues -->
+        <Border Margin="0,8,0,0" CornerRadius="{DynamicResource ControlCornerRadius}"
+                Padding="16,13,16,12" BorderThickness="1"
+                Background="{DynamicResource ControlFillColorDefaultBrush}"
+                BorderBrush="{DynamicResource ControlElevationBorderBrush}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
                     <TextBlock FontSize="14" Text="Enable Game Profiles" />
                     <TextBlock FontSize="12" Margin="0,2,0,0"
                                Foreground="{DynamicResource TextFillColorTertiaryBrush}"
                                Text="Auto-apply flag sets on game join." />
                 </StackPanel>
-            </ui:CardControl.Header>
-            <ui:ToggleSwitch x:Name="GlobalToggle" IsChecked="True"
-                             Click="GlobalToggle_Click" />
-        </ui:CardControl>
+                <ui:ToggleSwitch x:Name="GlobalToggle" Grid.Column="1"
+                                 VerticalAlignment="Center"
+                                 IsChecked="True" Click="GlobalToggle_Click" />
+            </Grid>
+        </Border>
 
         <!-- ── Built-in profiles ──────────────────────────────────────── -->
         <TextBlock FontSize="18" FontWeight="Medium" Margin="0,24,0,0"
