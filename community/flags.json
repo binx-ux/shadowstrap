@@ -1,0 +1,45 @@
+{
+  "presets": [
+    {
+      "name": "Max FPS — No Shadows",
+      "description": "Disables shadow rendering entirely for the biggest FPS gain on low-end hardware. Works in any game.",
+      "author": "binx-ux",
+      "tags": ["performance", "fps"],
+      "flags": {
+        "DFIntTaskSchedulerTargetFps": "9999",
+        "FIntRenderShadowIntensity": "0",
+        "FFlagGlobalWindRendering": "False",
+        "FFlagGlobalWindActivated": "False"
+      }
+    },
+    {
+      "name": "Low Latency Input",
+      "description": "Reduces input lag by disabling render-ahead and smoothing. Best for competitive / PvP games.",
+      "author": "binx-ux",
+      "tags": ["competitive", "latency"],
+      "flags": {
+        "DFIntTaskSchedulerTargetFps": "9999",
+        "FFlagDisableNewIGMinDUA": "True",
+        "DFIntRakNetResendBufferArrayLength": "128"
+      }
+    },
+    {
+      "name": "Potato Mode",
+      "description": "Absolute minimum visuals. Turns off textures, shadows, LOD distance, wind, and grass. For the oldest hardware.",
+      "author": "binx-ux",
+      "tags": ["performance", "low-end"],
+      "flags": {
+        "DFIntTaskSchedulerTargetFps": "9999",
+        "FIntRenderShadowIntensity": "0",
+        "FFlagGlobalWindRendering": "False",
+        "FFlagGlobalWindActivated": "False",
+        "DFIntCSGLevelOfDetailSwitchingDistance": "0",
+        "DFIntCSGLevelOfDetailSwitchingDistanceL12": "0",
+        "DFIntCSGLevelOfDetailSwitchingDistanceL23": "0",
+        "DFIntCSGLevelOfDetailSwitchingDistanceL34": "0",
+        "FIntRenderGrassDetailStrands": "0",
+        "FIntDebugForceMSAASamples": "1"
+      }
+    }
+  ]
+}

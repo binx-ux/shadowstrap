@@ -53,6 +53,11 @@ namespace Shadowstrap.Models.Persistable
         // last performance preset applied so the UI can highlight it on next open
         public PerformancePreset LastPerformancePreset { get; set; } = PerformancePreset.Default;
 
+        // per-game FastFlag profiles
+        public bool GameProfilesEnabled { get; set; } = true;
+        public List<GameFlagProfile> UserGameProfiles { get; set; } = new();
+        public HashSet<long> DisabledBuiltInProfileIds { get; set; } = new();
+
         // custom death sound (path stored so we can show current selection; the file lives in Modifications/)
         public string CustomDeathSoundPath { get; set; } = "";
     }

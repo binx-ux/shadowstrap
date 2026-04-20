@@ -26,6 +26,9 @@ namespace Shadowstrap.UI.Elements.ContextMenu
         private ServerHistory?       _gameHistoryWindow;
         private ServerBrowserDialog? _serverBrowserWindow;
 
+        // per-game profile: stores original flag values for the keys we overrode
+        private Dictionary<string, object?> _profileSnapshot = new();
+
         public MenuContainer(Watcher watcher)
         {
             InitializeComponent();
@@ -75,7 +78,48 @@ namespace Shadowstrap.UI.Elements.ContextMenu
                     InviteDeeplinkMenuItem.Visibility = Visibility.Visible;
 
                 ServerDetailsMenuItem.Visibility = Visibility.Visible;
+
+                // apply per-game FastFlag profile if one matches
+                if (App.Settings.Prop.GameProfilesEnabled)
+                    ApplyGameProfile(_activityWatcher.Data.PlaceId);
             });
+        }
+
+        private void ApplyGameProfile(long placeId)
+        {
+            var profile = FindProfileForPlace(placeId);
+            if (profile is null) return;
+
+            _profileSnapshot.Clear();
+            foreach (var (key, value) in profile.Flags)
+            {
+                _profileSnapshot[key] = App.FastFlags.GetValue(key); // null = didn't exist
+                App.FastFlags.SetValue(key, value);
+            }
+            App.FastFlags.Save();
+            App.Logger.WriteLine("MenuContainer::ApplyGameProfile",
+                $"Applied profile \"{profile.Name}\" for place {placeId} ({profile.Flags.Count} flags)");
+        }
+
+        private Models.Persistable.GameFlagProfile? FindProfileForPlace(long placeId)
+        {
+            // user profiles take priority over built-in
+            var user = App.Settings.Prop.UserGameProfiles
+                .FirstOrDefault(p => p.PlaceId == placeId && p.Enabled);
+            if (user is not null) return user;
+
+            return Models.Persistable.GameFlagProfile.BuiltIn
+                .FirstOrDefault(p => p.PlaceId == placeId
+                    && !App.Settings.Prop.DisabledBuiltInProfileIds.Contains(p.PlaceId));
+        }
+
+        private void RestoreFromProfile()
+        {
+            if (_profileSnapshot.Count == 0) return;
+            foreach (var (key, original) in _profileSnapshot)
+                App.FastFlags.SetValue(key, original);
+            App.FastFlags.Save();
+            _profileSnapshot.Clear();
         }
 
         public void ActivityWatcher_OnGameLeave(object? sender, EventArgs e)
@@ -85,6 +129,9 @@ namespace Shadowstrap.UI.Elements.ContextMenu
                 ServerDetailsMenuItem.Visibility = Visibility.Collapsed;
 
                 _serverInformationWindow?.Close();
+
+                // restore flags overridden by the game profile
+                RestoreFromProfile();
 
                 // Show session summary popup if enabled and we have data.
                 // History is ordered newest → oldest, so [0] / First() is the session we just left.

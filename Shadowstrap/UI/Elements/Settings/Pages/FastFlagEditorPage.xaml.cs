@@ -403,5 +403,25 @@ namespace Shadowstrap.UI.Elements.Settings.Pages
             _searchFilter = textbox.Text;
             ReloadList();
         }
+
+        private void CommunityButton_Click(object sender, RoutedEventArgs e) =>
+            Utilities.ShellExecute("https://github.com/binx-ux/shadowstrap/tree/main/community");
+
+        private void SharePresetButton_Click(object sender, RoutedEventArgs e)
+        {
+            var preset = new
+            {
+                name        = "My Preset",
+                description = "Describe what this preset does",
+                author      = "your-github-username",
+                flags       = App.FastFlags.Prop
+            };
+            var json = JsonSerializer.Serialize(preset, new JsonSerializerOptions { WriteIndented = true });
+            Clipboard.SetDataObject(json);
+            Frontend.ShowMessageBox(
+                "Your current FastFlags have been copied as a shareable community preset JSON.\n\n" +
+                "Open a pull request to  community/flags.json  at github.com/binx-ux/shadowstrap to share them with everyone.",
+                MessageBoxImage.Information);
+        }
     }
 }
