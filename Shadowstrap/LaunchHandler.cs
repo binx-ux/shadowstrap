@@ -42,6 +42,27 @@ namespace Shadowstrap
         {
             const string LOG_IDENT = "LaunchHandler::ProcessLaunchArgs";
 
+            // ── SUNSET NOTICE ─────────────────────────────────────────────────────
+            // Show a discontinuation dialog on every user-facing launch.
+            // Skip for background/silent operations that the user doesn't initiate.
+            if (!App.LaunchSettings.UninstallFlag.Active
+                && !App.LaunchSettings.WatcherFlag.Active
+                && !App.LaunchSettings.BackgroundUpdaterFlag.Active
+                && !App.LaunchSettings.QuietFlag.Active)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Showing sunset notice");
+                var sunset = new UI.Elements.Dialogs.SunsetDialog();
+                sunset.ShowDialog();
+
+                if (sunset.UninstallNow)
+                {
+                    App.Logger.WriteLine(LOG_IDENT, "User chose to uninstall from sunset dialog");
+                    LaunchUninstaller();
+                    return;
+                }
+            }
+            // ──────────────────────────────────────────────────────────────────────
+
             // this order is specific
 
             if (App.LaunchSettings.UninstallFlag.Active)

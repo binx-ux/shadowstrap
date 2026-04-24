@@ -189,15 +189,8 @@ namespace Shadowstrap
             if (connectionResult is not null)
                 HandleConnectionError(connectionResult);
             
-#if (!DEBUG || DEBUG_UPDATER) && !QA_BUILD
-            if (App.Settings.Prop.CheckForUpdates && !App.LaunchSettings.UpgradeFlag.Active)
-            {
-                bool updatePresent = await CheckForUpdates();
-                
-                if (updatePresent)
-                    return;
-            }
-#endif
+            // Project is discontinued — no further updates will be released.
+            // Update check is permanently disabled.
 
             App.AssertWindowsOSVersion();
 
