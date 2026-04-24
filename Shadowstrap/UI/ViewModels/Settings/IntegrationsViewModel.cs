@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows.Input;
 
 using Microsoft.Win32;
@@ -11,42 +10,6 @@ namespace Shadowstrap.UI.ViewModels.Settings
     public class IntegrationsViewModel : NotifyPropertyChangedViewModel
     {
         public ICommand AddIntegrationCommand => new RelayCommand(AddIntegration);
-
-        public ICommand OpenHoneGGCommand => new RelayCommand(OpenHoneGG);
-        public ICommand BrowseHoneGGPathCommand => new RelayCommand(BrowseHoneGGPath);
-
-        private void OpenHoneGG()
-        {
-            Process.Start(new ProcessStartInfo { FileName = "https://hone.gg", UseShellExecute = true });
-        }
-
-        private void BrowseHoneGGPath()
-        {
-            var dialog = new OpenFileDialog
-            {
-                Title = "Locate Hone.exe",
-                Filter = "Executable|*.exe|All Files|*.*",
-                FileName = "Hone.exe"
-            };
-
-            if (dialog.ShowDialog() != true)
-                return;
-
-            HoneGGPath = dialog.FileName;
-            OnPropertyChanged(nameof(HoneGGPath));
-        }
-
-        public bool UseHoneGG
-        {
-            get => App.Settings.Prop.UseHoneGG;
-            set => App.Settings.Prop.UseHoneGG = value;
-        }
-
-        public string HoneGGPath
-        {
-            get => App.Settings.Prop.HoneGGPath;
-            set => App.Settings.Prop.HoneGGPath = value;
-        }
 
         public ICommand DeleteIntegrationCommand => new RelayCommand(DeleteIntegration);
 

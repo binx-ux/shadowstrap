@@ -96,40 +96,5 @@
             </StackPanel>
         </controls:OptionControl>
 
-        <controls:OptionControl
-            Header="Custom Death Sound"
-            Description="Replaces the Roblox death sound (ouch.ogg) with your own audio file. Supports .ogg, .mp3, and .wav.">
-            <StackPanel>
-                <TextBlock Text="{Binding CustomDeathSoundLabel, Mode=OneWay}"
-                           FontSize="12" Foreground="{DynamicResource ShadowTextMutedBrush}"
-                           Margin="0,0,0,6" />
-                <StackPanel Orientation="Horizontal">
-                    <ui:Button Icon="MusicNote124" Content="Choose Sound"
-                               Command="{Binding ManageCustomDeathSoundCommand}">
-                        <ui:Button.Style>
-                            <Style TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding HasCustomDeathSound}" Value="True">
-                                        <Setter Property="Visibility" Value="Collapsed" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ui:Button.Style>
-                    </ui:Button>
-                    <ui:Button Icon="Delete16" Content="Remove Sound" Appearance="Danger"
-                               Command="{Binding ManageCustomDeathSoundCommand}">
-                        <ui:Button.Style>
-                            <Style TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding HasCustomDeathSound}" Value="False">
-                                        <Setter Property="Visibility" Value="Collapsed" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ui:Button.Style>
-                    </ui:Button>
-                </StackPanel>
-            </StackPanel>
-        </controls:OptionControl>
     </StackPanel>
 </ui:UiPage>

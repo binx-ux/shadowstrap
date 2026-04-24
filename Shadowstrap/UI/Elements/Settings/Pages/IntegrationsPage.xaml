@@ -15,61 +15,6 @@
     <StackPanel Margin="0,0,14,14">
         <TextBlock Text="{x:Static resources:Strings.Menu_Integrations_Description}" FontSize="14" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
 
-        <!-- Hone.gg Section -->
-        <TextBlock FontSize="20" FontWeight="Medium" Margin="0,16,0,0" Foreground="{DynamicResource TextFillColorPrimaryBrush}">
-            <Run Text="💜  Hone.gg" />
-        </TextBlock>
-        <Border Height="2" Margin="0,6,0,10" CornerRadius="1">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="#8B5CF6" Offset="0" />
-                    <GradientStop Color="#6D28D9" Offset="0.6" />
-                    <GradientStop Color="Transparent" Offset="1" />
-                </LinearGradientBrush>
-            </Border.Background>
-        </Border>
-
-        <Border CornerRadius="8" Padding="16" Margin="0,0,0,8" BorderThickness="1" BorderBrush="#3D2D6B">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#0f0720" Offset="0" />
-                    <GradientStop Color="#1a0a2e" Offset="1" />
-                </LinearGradientBrush>
-            </Border.Background>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                    <TextBlock FontSize="14" FontWeight="SemiBold" Foreground="#A78BFA" Text="Network optimizer for Roblox" />
-                    <TextBlock FontSize="12" Foreground="#8B7AB8" TextWrapping="Wrap" Margin="0,4,16,0"
-                               Text="Hone.gg reduces your ping and stabilizes your connection before Roblox launches. When enabled, Shadowstrap will automatically start Hone before opening Roblox." />
-                </StackPanel>
-                <ui:Button Grid.Column="1" Content="Get Hone.gg" Appearance="Primary" VerticalAlignment="Center"
-                           Command="{Binding OpenHoneGGCommand}" Margin="12,0,0,0" />
-            </Grid>
-        </Border>
-
-        <controls:OptionControl
-            Header="Enable Hone.gg pre-launch"
-            Description="Automatically launches Hone.gg before Roblox starts to optimize your network connection.">
-            <ui:ToggleSwitch IsChecked="{Binding UseHoneGG, Mode=TwoWay}" />
-        </controls:OptionControl>
-
-        <controls:OptionControl
-            Header="Hone.gg executable path"
-            Description="Optional — leave blank to auto-detect. Browse to Hone.exe if it isn't found automatically.">
-            <Grid Width="320">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <ui:TextBox Grid.Column="0" PlaceholderText="Auto-detect" Text="{Binding HoneGGPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <ui:Button Grid.Column="1" Margin="8,0,0,0" Height="34" Icon="Folder24" Content="Browse" Command="{Binding BrowseHoneGGPathCommand}" />
-            </Grid>
-        </controls:OptionControl>
-
         <!-- Activity Tracking -->
         <TextBlock Text="{x:Static resources:Strings.Menu_Integrations_ActivityTracking}" FontSize="20" FontWeight="Medium" Margin="0,20,0,0" />
         <Border Height="2" Margin="0,6,0,10" CornerRadius="1">
